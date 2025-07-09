@@ -1,0 +1,51 @@
+# ============================================
+# 📝 Zenvi Followup Tool Configuration Example
+# ============================================
+
+# 👤 The name of your company or client
+client_name: 'Example Client'
+
+# 📄 The full URL of your Google Sheet containing leads
+sheet_url: 'https://docs.google.com/spreadsheets/d/your_sheet_id_here'
+
+# ✉️ The email template to send
+# Leave {{name}} to insert each contact's name dynamically, just replace the text in the parentheses with your name and company name. This is the email that will be sent to the client when they are added to the sheet.
+email_template: 'Hey {{name}}, this is (insert your name) from (insert your company). Just wanted to say thanks for reaching out!'
+
+# 📝 The subject line of the email
+# Use {{name}} here too if you want personalization
+subject_line: 'Hey {{name}}, thanks for reaching out!'
+
+# 🔑 The column in your sheet used to trigger sending
+trigger_column: 'Status'
+
+# ✅ The value in the trigger column that activates this automation
+trigger_value: 'New Lead'
+
+# 📧 The column containing recipient email addresses
+email_field: 'Email'
+
+# 🙋‍♂️ The column containing recipient names
+name_field: 'Name'
+
+# 🏷️ A unique campaign name for logging purposes
+campaign: 'lead_welcome'
+
+# 🔗 Type of data source used (gspread recommended for Sheets)
+source_type: 'gspread'
+
+# ✅ The column used to update status after email is sent
+status_column: 'Automation Status'
+
+# ============================================
+# 🌐 Optional HTML Email Template Enhancements
+# ============================================
+
+# 🖼️ URL to your company logo for branding in email template
+logo_url: 'https://i.imgur.com/EUt4hg3.png'
+
+# 🔘 CTA button label text (leave blank to hide button)
+cta_label: 'Visit Google'
+
+# 🔗 URL the CTA button should link to
+cta_link: 'https://google.com'

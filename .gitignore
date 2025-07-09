@@ -1,0 +1,29 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VSCode settings
+.vscode/
+.history/
+
+# Virtual environment
+venv/
+.env
+
+# Logs and runtime files
+*.log
+*.csv
+*.sqlite3
+.DS_Store
+
+# Ignore sent email logs
+sent_emails.csv
+
+# Credentials
+credentials/*.json
+
+# OS metadata
+Thumbs.db
+ehthumbs.db
+node_modules/
