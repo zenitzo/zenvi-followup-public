@@ -1,124 +1,196 @@
-# Zenvi Automation Engine ⚙️📬
+# 📝 Zenvi Followup Tool – Super Simple Setup Guide (For Complete Beginners)
 
-This is a production-grade, modular automation system built with Python. Each product (like `followup`, `onboarding`, or `proposal_generator`) reads inputs from sources like Google Sheets or webhooks, processes them using YAML configs, and sends outputs like branded emails or PDF proposals — with full logging and deduplication.
-
----
-
-## 🧠 What It Does
-
-- ✅ Modular plug-and-play products (followup, onboarding, proposal generator, etc.)
-- ✅ Reads lead data from Google Sheets (via gspread)
-- ✅ Filters leads by trigger column/value (e.g. `Stage: onboard`)
-- ✅ Sends **branded HTML emails with personalization**
-- ✅ Logs activity per campaign (e.g. `lead_welcome_emails.csv`)
-- ✅ Dedupes based on both sheet status + log history
-- ✅ Updates a status column in the Sheet after each send
+Welcome to your **free followup automation tool**. This guide will show you how to set it up **even if you’ve never coded before**.
 
 ---
 
-## 🔧 Setup Instructions
+## ⚡ **What This Tool Does**
 
-### 1. Clone the Repo
+✅ Sends automatic follow-up emails to leads in your Google Sheet  
+✅ Saves you time by emailing everyone in one click
 
-```bash
-git clone https://github.com/YOUR_USERNAME/zenvi-automation.git
-cd zenvi-automation
-```
+---
 
-### 2. Create and Activate a Virtual Environment
+## 🚀 **STEP 0. Install Required Apps**
+
+### ✅ **1. Install Visual Studio Code (VSCode)**
+
+- Go to [https://code.visualstudio.com/](https://code.visualstudio.com/)
+- Click **Download for Windows** or **Download for Mac**
+- Open the downloaded file and follow the install instructions
+
+---
+
+### ✅ **2. Install Python**
+
+- Go to [https://python.org/downloads](https://python.org/downloads)
+- Click **Download Python**
+- Open the downloaded file
+- IMPORTANT: **Check the box that says “Add Python to PATH”** before clicking Install
+
+---
+
+## 🚀 **STEP 1. Download the Followup Tool**
+
+### ✅ **Option A. Easiest Way (Download ZIP)**
+
+1. Go to the tool’s GitHub page (link will be provided)
+2. Click the **green “Code” button**
+3. Click **“Download ZIP”**
+4. Find the downloaded file on your computer (usually in Downloads)
+5. **Right-click → Extract All** (Windows) or **double-click to unzip** (Mac)
+6. Open the unzipped folder
+
+---
+
+## 🚀 **STEP 2. Open the Tool in VSCode**
+
+1. Open **Visual Studio Code**
+2. Click **“File” > “Open Folder”**
+3. Find and select the folder you just unzipped
+4. Click **“Open”**
+
+---
+
+## 🚀 **STEP 3. Set Up Your Virtual Environment**
+
+1. At the top menu in VSCode, click **“Terminal” > “New Terminal.”**
+
+   - A black box will appear at the bottom.
+
+2. Type (or copy and paste) this command:
+
+### ✅ **For Mac:**
 
 ```bash
 python3 -m venv venv
+```
+
+### ✅ **For Windows:**
+
+```bash
+python -m venv venv
+```
+
+3. Press **Enter**.
+4. Then activate it:
+
+### ✅ **For Mac:**
+
+```bash
 source venv/bin/activate
 ```
 
-### 3. Install Requirements
+### ✅ **For Windows:**
+
+```bash
+venv\Scripts\activate
+```
+
+✅ If successful, you will see something like `(venv)` at the start of the line in your terminal.
+
+---
+
+## 🚀 **STEP 4. Install Required Packages**
+
+In the same terminal, type:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Add Your `.env` File
-
-Create a `.env` file in the project root:
-
-```
-EMAIL_USERNAME=youremail@example.com
-EMAIL_PASSWORD=yourpassword
-```
-
-> ⚠️ For Gmail, use an App Password instead of your login.
+Press **Enter**. Wait for it to finish installing.
 
 ---
 
-## 📝 Configure a Campaign
+## 🚀 **STEP 5. Set Up Your Google Credentials**
 
-YAML configs live under:
+1. Go to the **`credentials`** folder in VSCode.
+2. Open the file called **`google_creds.json`**.
 
-```
-client_configs/{product_slug}/{your_config}.yaml
-```
+3. Follow the **simple setup instructions** in `credentials_setup.md` to fill out your credentials.
 
-Example for `onboarding`:
-
-```yaml
-client_name: "Your Brand"
-sheet_url: "https://docs.google.com/..."
-email_template: "Hey {{name}}, this is Akira from Zen Automations!"
-subject_line: "Hey {{name}}, welcome aboard!"
-trigger_column: "Stage"
-trigger_value: "onboard"
-email_field: "Email"
-name_field: "Name"
-campaign: "onboarding_welcome"
-source_type: "gspread"
-status_column: "Automation Status"
-logo_url: "https://yourdomain.com/logo.png"
-cta_label: "Start Now"
-cta_link: "https://yourlink.com"
-```
+✅ **Summary:**  
+You will create a **Google Service Account**, download your credentials, and paste them here.
 
 ---
 
-## 🚀 How to Run Each Product
+## 🚀 **STEP 6. Set Up Your Followup Config**
 
-From the root folder, run a product using:
+1. Go to **`client_configs/followup/`** folder.
+2. Open **`welcome_followup.yaml`**.
+
+3. Update:
+
+- **client_name:** Your name or company
+- **sheet_url:** The link to your Google Sheet with leads
+- **email_template:** The message you want to send (e.g. “Hey {{name}}, just checking in!”)
+- **subject_line:** The email subject (e.g. “Quick follow up, {{name}}”)
+- **logo_url, cta_label, cta_link:** Optional for adding a button in your email
+
+---
+
+## 🚀 **STEP 7. Share Your Google Sheet**
+
+1. Open your Google Sheet
+2. Click **“Share”** (top right)
+3. Copy the **client_email** from your `google_creds.json` file
+4. Paste it into the Share box and give it **Editor access**
+
+---
+
+## 🚀 **STEP 8. Set Up Your Email Login**
+
+1. In VSCode, find the file called **`.env.example`**
+2. Rename it to **`.env`**
+
+3. Open `.env` and replace with your info:
+
+```
+EMAIL_USERNAME=your_email_here@gmail.com
+EMAIL_PASSWORD=your_app_password_here
+```
+
+✅ **Important:**  
+If using Gmail, create an **App Password** (Google “Gmail App Password setup”) and paste it here instead of your normal password.
+
+---
+
+## 🚀 **STEP 9. Run the Followup Tool**
+
+1. Make sure your virtual environment is still activated (see STEP 3).
+
+2. In the terminal, type:
 
 ```bash
 python3 -m zens_engine.products.followup.main --config welcome_followup
 ```
 
-```bash
-python3 -m zens_engine.products.onboarding.main --config onboarding_welcome
-```
+(If on Windows and python3 doesn’t work, use `python` instead.)
 
-```bash
-python3 -m zens_engine.products.proposal_generator.main --config test_proposal
-```
+✅ **What will happen:**
 
-> `--config` refers to the YAML name (without `.yaml` extension)
-
----
-
-## 📦 Output and Logging
-
-- Emails sent via SMTP
-- Logged to: `zens_engine/logs/{product}/{campaign}_emails.csv`
-- Sheet status column updated (e.g. `Automation Status` = "Emailed")
+- The tool will read your Google Sheet
+- Send followup emails to each person with your template
+- Mark them as emailed in your Sheet
+- Save a log file of who was emailed
 
 ---
 
-## 🧪 Optional Features (Coming Soon)
+## 🎉 **ALL DONE!**
 
-- `--dry_run` mode to simulate sends
-- Multi-source input support (Supabase, APIs)
-- PDF proposal attachments
-- CRM and webhook integrations
+You have successfully set up your Zenvi Followup Automation Tool.
 
 ---
 
-## 🔒 Version
+### ❓ **Need Extra Help?**
 
-This is the **v1.8 stable release** of the Zenvi Automation Engine — powering real campaigns across multiple businesses.
+- Rewatch the setup video
+- Double check every step slowly
+- Contact Zenvi for paid setup support if needed
 
-More plug-and-play products (proposals, payment flows, deadline reminders) are live or coming soon.
+---
+
+✅ **End of Dummy-Friendly Setup Guide**
+
+You’re ready to automate your followups and save hours every week.
