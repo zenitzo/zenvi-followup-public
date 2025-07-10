@@ -20,8 +20,6 @@ venv/
 # Ignore sent email logs
 sent_emails.csv
 
-# Credentials
-credentials/*.json
 
 # OS metadata
 Thumbs.db

@@ -1,4 +1,4 @@
-from zens_engine.inputs import sheet_reader, sheets_api_reader, supabase_reader
+from zens_engine.inputs import sheet_reader, sheets_api_reader
 
 def read_sheet(config: dict):
     """
